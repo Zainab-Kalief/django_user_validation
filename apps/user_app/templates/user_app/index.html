@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Sign Up Here</h1>
+    <form action="{% url 'users:sign_up' %}" method="post">
+      {% csrf_token %}
+      Name: <input type="text" name="name">
+      Email: <input type="text" name="email"><p>
+      Password: <input type="text" name="password">
+      Confirm PS: <input type="text" name="confirm_password">
+      <input type="submit" value="Sign Up!">
+      {% if messages %}
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+      {% endif %}
+    </form>
+
+    <h1>Log In Here</h1>
+    <form action="{% url 'users:log_in' %}" method="post">
+      {% csrf_token %}
+      Email: <input type="text" name="email"><p>{{request.session.error}}</p>
+      Password: <input type="text" name="password">
+      <input type="submit" value="Log In!">
+    </form>
+
+  </body>
+</html>
